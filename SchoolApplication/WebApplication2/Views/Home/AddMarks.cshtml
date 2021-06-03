@@ -1,0 +1,48 @@
+﻿
+@model WebApplication2.Models.MarksModel
+
+    <div class="container w-75">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Marks</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm())
+                        {
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+
+
+                                        @for (int i = 0; i < ViewBag.subject.Count; i++)
+                                        {
+
+
+                                            <b> @ViewBag.subject[i].subjectt.subname:</b>
+                                            <input type="hidden" class="form-control" name="Subjectid[@i]" value="@ViewBag.subject[i].subid" />
+
+                                            @Html.TextBoxFor(x => x.Subjectmarks, new { @class = "form-control" })
+                                        }
+                                    
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

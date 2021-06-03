@@ -1,0 +1,97 @@
+﻿@model WebApplication2.Models.LoginModel
+@{
+    Layout = null;
+}
+
+    <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Login</title>
+        <link href="~/Newfolder/dist/css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="bg-primary" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOG6h311FjWydGHBXuihYBjLafV7KYnhnUig&usqp=CAU'); background-repeat: no-repeat; ">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                    <div class="card-body">
+                                        @using (Html.BeginForm())
+                                        {
+
+                                            <form>
+
+
+                                                <div class="form-group">
+                                                    @Html.LabelFor(x => x.Email)
+                                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(model => model.Email)
+                                                    </div>   
+
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.LabelFor(x => x.Password)
+                                                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                                                    <div class="text-danger">
+                                                        @Html.ValidationMessageFor(x => x.Password)
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
+                                                        <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                                    <a class="small" href="password.html">Forgot Password?</a>
+                                                    <button class="btn btn-primary" id="load">Login</button>
+                                                </div>
+                                            </form>
+                                        }
+                                    </div>
+                                    <div class="card-footer text-center">
+                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            @if (TempData["Invalid"] != null)
+            {
+                <p style="color:red">Invalid Credintials</p>
+            }
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="~/Scripts/jquery-3.5.0.slim.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+        <script src="~/loding/loading.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+    </html>

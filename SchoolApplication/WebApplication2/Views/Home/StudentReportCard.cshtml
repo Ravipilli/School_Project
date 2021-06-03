@@ -1,0 +1,147 @@
+﻿@model WebApplication2.Models.ReportsModel
+
+<h2>Report Card</h2>
+<div id="grid">
+    <style>
+        html {
+            font-family: arial;
+            font-size: 18px;
+        }
+
+        td {
+            border: 1px solid #726E6D;
+            padding: 10px;
+        }
+
+        thead {
+            font-weight: bold;
+            text-align: left;
+        }
+
+        th {
+            border: 1px solid #726E6D;
+            padding: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        .footer {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        tbody > tr:nth-child(odd) {
+            background: #D1D0CE;
+        }
+
+        .head {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                                            </div>
+                </div>
+            </div>
+
+            <table style="width:100%">
+                <thead>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+
+                            <div class="row p-5">
+                                <div class="col-md-6">
+                                    <h2>My School</h2>
+                                </div>
+
+                                <div style="text-align:right" class="col-md-6">
+                                    <p class="font-weight-bold mb-1">Invoice #550</p>
+                                    <p class="text-muted">Due to: 4 Dec, 2019</p>
+                                </div>
+                            </div>
+
+                            <div class="row pb-5 p-5">
+                                <div style="text-align:left" class="col-md-6">
+                                    <p> @Html.LabelFor(x => x.StudentName):@Html.ValueFor(x => x.StudentName)</p>
+                                    <p> @Html.LabelFor(x => x.Class):@Html.ValueFor(x => x.Class)</p>
+                                </div>
+                                <div style="text-align:right" class="col-md-6">
+
+                                    <p> @Html.LabelFor(x => x.Exam):@Html.ValueFor(x => x.Exam)</p>
+                                </div>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th style="background-color: #B8DBFD;border: 1px solid #ccc">S.No</th>
+                        <th style="background-color: #B8DBFD;border: 1px solid #ccc">Subject:</th>
+                        <th style="background-color: #B8DBFD;border: 1px solid #ccc">Marks:</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @{ int i = 1; }
+
+                    @foreach (var item in Model.Marklist)
+                    {
+
+
+
+                        <tr>
+
+                            <td>@i</td>
+                            @{ i++; }
+                            <td> @Html.DisplayFor(modelItem => item.subjectt.subname)</td>
+                            <td> @Html.DisplayFor(modelItem => item.submarks)</td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="footer"> @Html.LabelFor(x => x.TotalMarks)</td>
+                        <td>@Html.ValueFor(x => x.TotalMarks)</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="footer">@Html.LabelFor(x => x.Percentage)</td>
+                        <td>@Html.ValueFor(x => x.Percentage)%</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="footer">@Html.LabelFor(x => x.status)</td>
+                        <td>@Html.ValueFor(x => x.status)</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+                    @using (Html.BeginForm("Export", "Home", FormMethod.Post))
+                    {
+                        <input type="hidden" name="GridHtml" />
+                        <input type="submit" id="btnSubmit" value="Export" />
+
+                    }
+                    <script src="~/Scripts/jquery-3.5.0.min.js"></script>
+                    <script type="text/javascript">
+                        $(function () {
+
+                            $("#btnSubmit").click(function () {
+
+                                $("input[name='GridHtml']").val($("#grid").html());
+                            });
+                        });
+
+                    </script>

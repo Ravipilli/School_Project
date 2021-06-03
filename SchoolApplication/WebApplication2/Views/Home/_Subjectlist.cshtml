@@ -1,0 +1,52 @@
+﻿@model WebApplication2.Models.SubjectModel
+    <div class="container-fluid">
+        <div class="my-3" align="right">
+        <button type="button" class="btn btn-secondary btn-sm" align="right" data-toggle="modal" data-target="#exampleModal">
+            CreateSubject
+        </button>
+            </div>
+
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("SubjectName")
+
+                    </th>
+
+
+                    
+
+                    <th>
+                        @Html.DisplayName("MinMarks")
+
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("MaxMarks")
+
+                    </th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var item in Model.subjectlist)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subname)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.minmarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.maxmarks)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>

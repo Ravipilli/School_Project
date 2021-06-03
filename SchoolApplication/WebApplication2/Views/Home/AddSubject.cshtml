@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "AddSubject";
+
+}
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+@Html.Partial("_Createsubject")
+
+
+@Html.Partial("_Subjectlist")
+
+
+
+@section Scripts{
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table").DataTable();
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@if (TempData["Addsubject"] != null)
+{
+
+
+    <script type="text/javascript">
+
+
+
+        Swal.fire({
+            title: 'Subject Added Successfully',
+
+            icon: 'success'
+        })
+
+    </script>
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#classes').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+            
+           
+           
+        });
+    });
+    
+</script>
+
+
+
+

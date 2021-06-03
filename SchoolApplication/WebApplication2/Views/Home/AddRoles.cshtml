@@ -1,0 +1,124 @@
+﻿@model WebApplication2.Models.RoleModel
+    <div class="container-fluid">
+        <div class="my-3" align="right">
+            <button type="button" class="btn btn-secondary btn-sm" align="right" data-toggle="modal" data-target="#exampleModal">
+                Create Exam
+            </button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Exam</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        @using (Html.BeginForm())
+                        {
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6 ">
+
+
+                                        @Html.LabelFor(x => x.RoleName)
+                                        @Html.TextBoxFor(x => x.RoleName, new { @class = "form-control" })
+                                    </div>
+
+
+                                    
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary" value="Submit" />
+                                    </div>
+                                </div>
+                            </form>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Role Id")
+
+                    </th>
+
+
+
+
+                    <th>
+                        @Html.DisplayName("Role")
+
+                    </th>
+                </tr>
+
+            </thead>
+            <tbody>
+                @if (Model.RoleList != null)
+                {
+                    foreach (var item in Model.RoleList)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.rid)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.RName)
+                        </td>
+
+                    </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+@section Scripts{
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+
+}
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table").DataTable();
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@if (TempData["RoleCreated"] != null)
+{
+
+
+    <script type="text/javascript">
+
+
+
+        Swal.fire({
+            title: 'Role Created Successfully',
+
+            icon: 'success'
+        })
+
+    </script>
+}
+

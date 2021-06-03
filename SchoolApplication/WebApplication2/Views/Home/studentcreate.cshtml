@@ -1,0 +1,165 @@
+﻿@model WebApplication2.Models.StudentModel
+
+    
+        <div class="container">
+            <div class="card shadow-lg border-0 rounded-lg mt-3">
+
+                <div class="card-header bg-secondary"><h3 class="text-center font-weight-bold my-3 ">Add Student</h3> </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("studentcreate", "Home", FormMethod.Post, new
+                    {
+                        enctype = "multipart/form-data"
+                    }))
+
+                    {
+
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.StudentName)
+                                @Html.TextBoxFor(x => x.StudentName, new { placeholder = Html.DisplayNameFor(n => n.StudentName), @class = "form-control" })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.FatherName)
+                                @Html.TextBoxFor(x => x.FatherName, new { placeholder = Html.DisplayNameFor(n => n.FatherName), @class = "form-control" })
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.PhoneNumber)
+                                @Html.TextBoxFor(x => x.PhoneNumber, new { placeholder = Html.DisplayNameFor(n => n.PhoneNumber), @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Dateofbirth)
+                                <input type="text" name="Dateofbirth" placeholder="DD/MM/YYYY" id="date" class="form-control" />
+
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Gender)<br />
+                                <input type="radio" name="gender" value="0" required> Male
+                                <input type="radio" name="gender" value="1"> Female
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.Label("Class")
+                                @Html.DropDownListFor(model => model.classes, (IEnumerable<SelectListItem>)Model.classlist, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.Label("Roles")
+                                @Html.DropDownListFor(model => model.Roles, (IEnumerable<SelectListItem>)Model.Rolelist, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Address)
+                                @Html.TextAreaFor(x => x.Address, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Dateofjoine)
+                                <input type="text" name="Dateofjoine" placeholder="DD/MM/YYYY" id="date1" 3 class="form-control" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.AcadamicYear)
+                                @Html.DropDownListFor(x => x.AcadamicYear, new List<SelectListItem>
+                           {
+                               new SelectListItem { Text = "2020-2021", Value = "2020-2021"},
+                               new SelectListItem { Text = "2021-2022", Value = "2021-2022"},
+                               new SelectListItem { Text = "2022-2023", Value = "2022-2023"},
+                               new SelectListItem { Text = "2023-2024", Value = "2023-2024"},
+                               new SelectListItem { Text = "2024-2025", Value = "2024-2025"}
+                           }, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Photo)
+
+                                <img id="blah" width="100" height="100" />
+
+                                <input type="file" name="file"
+                                       onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Email)
+                                @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Password)
+                                <input type="password" name="Password" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" id="sbt" class="btn btn-primary btn-block " value="Submit" />
+                        </div>
+                    </form>
+
+
+                    }
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        @if (TempData["AdmissionNumber"] != null)
+        {
+            <p class="alert alert-success" id="successMessage">@TempData["AdmissionNumber"]</p>
+
+            <script type="text/javascript">
+
+
+
+        Swal.fire('Student Added Successfully',
+            'Your AdmissionNumber is @TempData["AdmissionNumber"]',
+            'success')
+
+            </script>
+
+        }
+
+        <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+        <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery-3.5.0.min.js"></script>
+        <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+        <script type="text/javascript">
+
+
+            $(document).ready(function ($) {
+
+                $("#date").datepicker({
+
+                    dateFormat: "yy-MM-dd",
+                    changeMonth: true,
+                    changeYear: true,
+                    yearRange: "-60:+0",
+                    maxDate: 0
+                });
+
+                $("#date1").datepicker({
+
+                    dateFormat: "yy-MM-dd",
+                    changeMonth: true,
+                    changeYear: true,
+
+                });
+
+            });
+            $(function () {
+                $("input").prop('required', true);
+            });
+        </script>
+
+

@@ -1,0 +1,84 @@
+﻿
+@{
+
+   
+    ViewBag.Title = "Covid-19 Updates";
+}
+<body style="background-color:cornflowerblue" >
+    <h2 style="color:white">Covid-19 Updates</h2><br />
+    <div style="background-color:white; border: 20px solid #FFFFFF; margin:7px">
+        <table id="o">
+            <thead>
+                <tr>
+                    <th>
+                        Country
+                    </th>
+
+                    <th>
+                        Total Cases
+                    </th>
+                    <th>
+                        Total Deaths
+                    </th>
+                    <th>
+                        Total Recovered
+                    </th>
+                    <th>
+                        New Cases
+                    </th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</body>
+
+
+@section Scripts{
+    
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+}
+
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script>
+    
+    $.ajax({
+        url: "https://corona.lmao.ninja/v2/countries/",
+        method: "get",
+        dataType:"json",
+        success: function (data) {
+            
+            var em = '';
+            $.each(data, function(key, value) {
+               
+                
+                em += '<tr>';
+                em += '<td>' + value.country + '</td>';
+                em += '<td>' + value.cases + '</td>';
+                em += '<td>' + value.deaths + '</td>';
+                em += '<td>' + value.recovered + '</td>';
+                em += '<td>' + value.todayCases + '</td>';
+                em += '</tr>';
+                
+            });  
+            $("#o").append(em);
+            $("#o").DataTable();
+        }
+
+
+
+    });
+    $.ajax({
+        url: "https://type.fit/api/quotes",
+        method: "get",
+        dataType:"json",
+        success: function (data) {
+            var i = parseInt(Math.random() * 1500);
+            $("#f").append(JSON.stringify(data[i]));
+        }
+    });
+</script>
+

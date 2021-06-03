@@ -1,0 +1,76 @@
+﻿@model WebApplication2.Models.Quiz
+@{
+    ViewBag.Title = "QuizTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .question:not(.active) {
+        display: none;
+    }
+</style>
+
+<h2>QuizTest</h2>
+@using (Html.BeginForm())
+{
+    if (Model.Quizzes != null)
+    {
+        var i = 0;
+<div id="questions">
+
+    <div class="question active"><h1>Start Quiz</h1></div>
+    
+
+    @foreach (var item in Model.Quizzes)
+    {
+
+        <div class="question">
+
+            <b>@Html.DisplayFor(modelitem => item.ID) </b>
+            <input type="hidden" class="form-control" name="num" value="@Html.ValueFor(modelitem => item.ID)" />
+            <b>@Html.DisplayFor(modelitem => item.Question)</b>
+            <br />
+            <input type="radio" id="@i+1" name="ans[@i]" value="@Html.ValueFor(modelitem => item.OptionA)" />
+            @Html.DisplayFor(modelitem => item.OptionA)
+            <br />
+            <input type="radio" id="@i+1" name="ans[@i]" value="@Html.ValueFor(modelitem => item.OptionB)" />
+            @Html.DisplayFor(modelitem => item.OptionB)
+            <br />
+            <input type="radio" id="@i+1" name="ans[@i]" value="@Html.ValueFor(modelitem => item.OptionC)" />
+            @Html.DisplayFor(modelitem => item.OptionC)
+            <br />
+            <input type="radio" id="@i+1" name="ans[@i]" value="@Html.ValueFor(modelitem => item.OptionD)" />
+            @Html.DisplayFor(modelitem => item.OptionD)
+            <br />
+            
+        </div>
+        ++i;
+    }
+
+</div>
+
+    }
+
+    <button type="button" id="next">Next</button>
+
+    <input type="submit" value="Submit" />
+}
+@if (ViewData["Total"] != null)
+{
+    <p id="successMessage">Total Marks :@ViewData["Total"]</p>
+}
+
+<script>
+    $('#next').click(function () {
+        var $current = $('.question.active');
+        // use $current here to test if the question was answered if needed
+        // maybe something like if($current.find('.answer').val().trim() == ''){ return;}
+        $('.question').removeClass('active');
+        $current.next().addClass('active');
+    });
+</script>
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+

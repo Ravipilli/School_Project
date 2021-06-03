@@ -1,0 +1,185 @@
+﻿@model IEnumerable<WebApplication2.DB.student>
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "StudentList";
+
+}
+
+<h2>studentdetails</h2>
+
+
+
+
+
+<div id="grid">
+    <table id="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Admission Number")
+                </th>
+                <th>
+                    @Html.DisplayName("Student Name")
+                </th>
+
+                <th>
+                    @Html.DisplayName("Class")
+                </th>
+                <th>
+                    @Html.DisplayName("Phone Number")
+                </th>
+                <th>
+                    @Html.DisplayName("Date of Birth")
+                </th>
+                <th>
+                    @Html.DisplayName("Gender")
+                </th>
+                <th>
+                    @Html.DisplayName("Address")
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model=> model.photo)
+                    </th>*@
+                <th>
+                    @Html.DisplayName("Action")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.admissionnum)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.studentname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.@class.classname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phonenumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dateofbirth)
+                    </td>
+                    <td>
+
+                        @if (item.gender == false)
+                        {
+                            @Html.DisplayName("Male")
+                        }
+                        else
+                        {
+                            @Html.DisplayName("Female")
+                        }
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adress)
+                    </td>
+
+                    <td>
+
+                        @Html.ActionLink("Edit", "StudentEdit", new { id = item.admissionnum }) |
+                        @Html.ActionLink("Details", "StudentDetails", new { id = item.admissionnum }) |
+                        @Html.ActionLink("Delete", "Details", new { id = item.admissionnum })
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+
+<input type="button" id="btnSubmit" value="Export" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+@if (TempData["Edit"] != null)
+{
+    <script type="text/javascript">
+        Swal.fire({
+            title: ' Student Details Saved Sucessfully ',
+
+            icon: 'success'
+        })
+    </script>
+}
+@if (TempData["Delete"] != null)
+{
+    <script type="text/javascript">
+        Swal.fire(
+            'Deleted!',
+            'Student has been deleted.',
+            'success'
+        )
+    </script>
+}
+@*<script>
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            }
+            else {
+                Swal.fire('Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    </script>*@
+
+
+
+
+@section Scripts{
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="//cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#table").DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copyHtml5',
+                'excelHtml5',
+                'csvHtml5',
+                'pdfHtml5'
+            ]
+        });
+    });
+    $(function () {
+        $("#btnSubmit").click(function () {
+            $("#table").table2excel({
+                filename: "Table.xls"
+            });
+        });
+    });
+</script>

@@ -1,0 +1,122 @@
+﻿@model WebApplication2.DB.student
+
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentDetails</title>
+</head>
+<body>
+    <div>
+        <h4>student</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.admissionnum)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.admissionnum)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.studentname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.studentname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fathername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fathername)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phonenumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phonenumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dateofbirth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dateofbirth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.adress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.adress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.dateofjoining)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dateofjoining)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.@class.classname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.@class.classname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.acadamicyear)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.acadamicyear)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.isactive)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.isactive)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.photo)
+            </dt>
+            <dd>
+                @if (Model.photo != null)
+                {
+
+
+                    <img src="data:image;base64,@System.Convert.ToBase64String(Model.photo)" style='max-height:100px;max-width:100px' />
+                }
+                </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

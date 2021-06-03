@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9d71988efbfb423f9340e6e29601ccb5" Name="Diagram1" ZoomLevel="92">
+        <EntityTypeShape EntityType="schoolModel.attendance" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="schoolModel.class" Width="1.5" PointX="0.75" PointY="14.375" />
+        <EntityTypeShape EntityType="schoolModel.Exammapping" Width="1.5" PointX="8.25" PointY="13.375" />
+        <EntityTypeShape EntityType="schoolModel.feemapping" Width="1.5" PointX="3" PointY="29.375" />
+        <EntityTypeShape EntityType="schoolModel.Mark" Width="1.5" PointX="5.25" PointY="12.625" />
+        <EntityTypeShape EntityType="schoolModel.payment" Width="1.5" PointX="3" PointY="25.375" />
+        <EntityTypeShape EntityType="schoolModel.Role" Width="1.5" PointX="0.75" PointY="19.125" />
+        <EntityTypeShape EntityType="schoolModel.student" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="schoolModel.subjectmapping" Width="1.5" PointX="5.25" PointY="16.875" />
+        <EntityTypeShape EntityType="schoolModel.Teacher" Width="1.5" PointX="3" PointY="33.125" />
+        <AssociationConnector Association="schoolModel.FK__attendanc__class__2C3393D0" />
+        <AssociationConnector Association="schoolModel.FK__Exammappi__class__52593CB8" />
+        <AssociationConnector Association="schoolModel.FK__feemappin__class__31EC6D26" />
+        <AssociationConnector Association="schoolModel.FK__Marks__classid__5AEE82B9" />
+        <AssociationConnector Association="schoolModel.FK__payment__classid__37A5467C" />
+        <AssociationConnector Association="schoolModel.FK__student__classid__29572725" />
+        <AssociationConnector Association="schoolModel.FK__subjectma__class__5629CD9C" />
+        <AssociationConnector Association="schoolModel.FK__Marks__Admission__59063A47" />
+        <AssociationConnector Association="schoolModel.FK__student__rid__4BAC3F29" />
+        <AssociationConnector Association="schoolModel.FK__Teacher__rid__4E88ABD4" />
+        <EntityTypeShape EntityType="schoolModel.credintial" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="schoolModel.FK__credintials__Rid__6754599E" />
+        <EntityTypeShape EntityType="schoolModel.exam" Width="1.5" PointX="3.375" PointY="13.25" />
+        <EntityTypeShape EntityType="schoolModel.subjectt" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="schoolModel.FK__Exammappi__exami__5165187F" />
+        <AssociationConnector Association="schoolModel.FK__Marks__examid__5BE2A6F2" />
+        <AssociationConnector Association="schoolModel.FK__Marks__subid__59FA5E80" />
+        <AssociationConnector Association="schoolModel.FK__subjectma__subid__5535A963" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

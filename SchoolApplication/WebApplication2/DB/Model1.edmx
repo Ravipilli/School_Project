@@ -1,0 +1,1096 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="schoolModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="attendance">
+          <Key>
+            <PropertyRef Name="atid" />
+          </Key>
+          <Property Name="atid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentname" Type="nvarchar(max)" />
+          <Property Name="classid" Type="int" Nullable="false" />
+          <Property Name="dateofattandance" Type="date" Nullable="false" />
+          <Property Name="attandences" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="classes">
+          <Key>
+            <PropertyRef Name="classid" />
+          </Key>
+          <Property Name="classid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classname" Type="nvarchar(max)" />
+          <Property Name="classteacher" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="credintials">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="id" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Rid" Type="int" />
+          <Property Name="cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="exam">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="examname" Type="nvarchar(max)" />
+          <Property Name="examdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Exammapping">
+          <Key>
+            <PropertyRef Name="emid" />
+          </Key>
+          <Property Name="emid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="examid" Type="int" />
+          <Property Name="classid" Type="int" />
+        </EntityType>
+        <EntityType Name="feemapping">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admissionnum" Type="int" Nullable="false" />
+          <Property Name="studentname" Type="nvarchar(max)" />
+          <Property Name="fathername" Type="nvarchar(max)" />
+          <Property Name="classid" Type="int" Nullable="false" />
+          <Property Name="schoolfee" Type="int" Nullable="false" />
+          <Property Name="busfee" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Marks">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Admissionum" Type="int" />
+          <Property Name="subid" Type="int" />
+          <Property Name="classid" Type="int" />
+          <Property Name="examid" Type="int" />
+          <Property Name="Mstatus" Type="nvarchar(max)" />
+          <Property Name="submarks" Type="int" />
+          <Property Name="isprasent" Type="bit" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paymentname" Type="nvarchar(max)" />
+          <Property Name="studnetname" Type="nvarchar(max)" />
+          <Property Name="feepaid" Type="int" Nullable="false" />
+          <Property Name="feepending" Type="int" Nullable="false" />
+          <Property Name="totalfee" Type="int" Nullable="false" />
+          <Property Name="lastpaiddate" Type="date" Nullable="false" />
+          <Property Name="classid" Type="int" Nullable="false" />
+          <Property Name="islastpay" Type="bit" Nullable="false" />
+          <Property Name="isactive" Type="bit" Nullable="false" />
+          <Property Name="admissionnum" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RName" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="admissionnum" />
+          </Key>
+          <Property Name="admissionnum" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentname" Type="nvarchar(max)" />
+          <Property Name="fathername" Type="nvarchar(max)" />
+          <Property Name="phonenumber" Type="varchar" MaxLength="15" />
+          <Property Name="dateofbirth" Type="date" Nullable="false" />
+          <Property Name="gender" Type="bit" Nullable="false" />
+          <Property Name="adress" Type="nvarchar(max)" />
+          <Property Name="photo" Type="varbinary(max)" />
+          <Property Name="dateofjoining" Type="date" Nullable="false" />
+          <Property Name="classid" Type="int" Nullable="false" />
+          <Property Name="acadamicyear" Type="nvarchar(max)" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="rid" Type="int" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="subjectmapping">
+          <Key>
+            <PropertyRef Name="smid" />
+          </Key>
+          <Property Name="smid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subid" Type="int" />
+          <Property Name="classid" Type="int" />
+        </EntityType>
+        <EntityType Name="subjectt">
+          <Key>
+            <PropertyRef Name="subid" />
+          </Key>
+          <Property Name="subid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subname" Type="nvarchar(max)" />
+          <Property Name="minmarks" Type="int" Nullable="false" />
+          <Property Name="maxmarks" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tname" Type="nvarchar(max)" />
+          <Property Name="fathername" Type="nvarchar(max)" />
+          <Property Name="phonenumber" Type="nvarchar(max)" />
+          <Property Name="dateofbirth" Type="datetime" />
+          <Property Name="gender" Type="varchar(max)" />
+          <Property Name="adress" Type="nvarchar(max)" />
+          <Property Name="photo" Type="varbinary" MaxLength="1" />
+          <Property Name="dateofjoing" Type="datetime" />
+          <Property Name="rid" Type="int" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__attendanc__class__2C3393D0">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="attendance">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__credintials__Rid__6754599E">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="credintials" Type="Self.credintials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="credintials">
+              <PropertyRef Name="Rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exammappi__class__52593CB8">
+          <End Role="classes" Type="Self.classes" Multiplicity="0..1" />
+          <End Role="Exammapping" Type="Self.Exammapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="Exammapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exammappi__exami__5165187F">
+          <End Role="exam" Type="Self.exam" Multiplicity="0..1" />
+          <End Role="Exammapping" Type="Self.Exammapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exam">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="Exammapping">
+              <PropertyRef Name="examid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feemappin__class__31EC6D26">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="feemapping" Type="Self.feemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="feemapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__Admission__59063A47">
+          <End Role="student" Type="Self.student" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="admissionnum" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="Admissionum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__classid__5AEE82B9">
+          <End Role="classes" Type="Self.classes" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__examid__5BE2A6F2">
+          <End Role="exam" Type="Self.exam" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exam">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="examid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__subid__59FA5E80">
+          <End Role="subjectt" Type="Self.subjectt" Multiplicity="0..1" />
+          <End Role="Marks" Type="Self.Marks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subjectt">
+              <PropertyRef Name="subid" />
+            </Principal>
+            <Dependent Role="Marks">
+              <PropertyRef Name="subid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__classid__37A5467C">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="payment" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__classid__29572725">
+          <End Role="classes" Type="Self.classes" Multiplicity="1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__rid__4BAC3F29">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="student" Type="Self.student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subjectma__class__5629CD9C">
+          <End Role="classes" Type="Self.classes" Multiplicity="0..1" />
+          <End Role="subjectmapping" Type="Self.subjectmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classes">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="subjectmapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subjectma__subid__5535A963">
+          <End Role="subjectt" Type="Self.subjectt" Multiplicity="0..1" />
+          <End Role="subjectmapping" Type="Self.subjectmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subjectt">
+              <PropertyRef Name="subid" />
+            </Principal>
+            <Dependent Role="subjectmapping">
+              <PropertyRef Name="subid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teacher__rid__4E88ABD4">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="createclass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="classname" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="createstudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sname" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="fname" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="phone" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="dateofbirth" Type="datetime" Mode="In" />
+          <Parameter Name="gender" Type="bit" Mode="In" />
+          <Parameter Name="address" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="photo" Type="binary" Mode="In" />
+          <Parameter Name="dateofjoing" Type="datetime" Mode="In" />
+          <Parameter Name="classid" Type="int" Mode="In" />
+          <Parameter Name="acadamicyear" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="isactive" Type="bit" Mode="In" />
+          <Parameter Name="rid" Type="int" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="schoolModelStoreContainer">
+          <EntitySet Name="attendance" EntityType="Self.attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="classes" EntityType="Self.classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="credintials" EntityType="Self.credintials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="exam" EntityType="Self.exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exammapping" EntityType="Self.Exammapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feemapping" EntityType="Self.feemapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marks" EntityType="Self.Marks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student" EntityType="Self.student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subjectmapping" EntityType="Self.subjectmapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subjectt" EntityType="Self.subjectt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__attendanc__class__2C3393D0" Association="Self.FK__attendanc__class__2C3393D0">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="attendance" EntitySet="attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK__credintials__Rid__6754599E" Association="Self.FK__credintials__Rid__6754599E">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="credintials" EntitySet="credintials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exammappi__class__52593CB8" Association="Self.FK__Exammappi__class__52593CB8">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="Exammapping" EntitySet="Exammapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exammappi__exami__5165187F" Association="Self.FK__Exammappi__exami__5165187F">
+            <End Role="exam" EntitySet="exam" />
+            <End Role="Exammapping" EntitySet="Exammapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feemappin__class__31EC6D26" Association="Self.FK__feemappin__class__31EC6D26">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="feemapping" EntitySet="feemapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__Admission__59063A47" Association="Self.FK__Marks__Admission__59063A47">
+            <End Role="student" EntitySet="student" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__classid__5AEE82B9" Association="Self.FK__Marks__classid__5AEE82B9">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__examid__5BE2A6F2" Association="Self.FK__Marks__examid__5BE2A6F2">
+            <End Role="exam" EntitySet="exam" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__subid__59FA5E80" Association="Self.FK__Marks__subid__59FA5E80">
+            <End Role="subjectt" EntitySet="subjectt" />
+            <End Role="Marks" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__classid__37A5467C" Association="Self.FK__payment__classid__37A5467C">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="payment" EntitySet="payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__classid__29572725" Association="Self.FK__student__classid__29572725">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__rid__4BAC3F29" Association="Self.FK__student__rid__4BAC3F29">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="student" EntitySet="student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subjectma__class__5629CD9C" Association="Self.FK__subjectma__class__5629CD9C">
+            <End Role="classes" EntitySet="classes" />
+            <End Role="subjectmapping" EntitySet="subjectmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subjectma__subid__5535A963" Association="Self.FK__subjectma__subid__5535A963">
+            <End Role="subjectt" EntitySet="subjectt" />
+            <End Role="subjectmapping" EntitySet="subjectmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teacher__rid__4E88ABD4" Association="Self.FK__Teacher__rid__4E88ABD4">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="schoolModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="schoolEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="attendances" EntityType="schoolModel.attendance" />
+          <EntitySet Name="classes" EntityType="schoolModel.class" />
+          <EntitySet Name="Exammappings" EntityType="schoolModel.Exammapping" />
+          <EntitySet Name="feemappings" EntityType="schoolModel.feemapping" />
+          <EntitySet Name="Marks" EntityType="schoolModel.Mark" />
+          <EntitySet Name="payments" EntityType="schoolModel.payment" />
+          <EntitySet Name="Roles" EntityType="schoolModel.Role" />
+          <EntitySet Name="students" EntityType="schoolModel.student" />
+          <EntitySet Name="subjectmappings" EntityType="schoolModel.subjectmapping" />
+          <EntitySet Name="Teachers" EntityType="schoolModel.Teacher" />
+          <AssociationSet Name="FK__attendanc__class__2C3393D0" Association="schoolModel.FK__attendanc__class__2C3393D0">
+            <End Role="class" EntitySet="classes" />
+            <End Role="attendance" EntitySet="attendances" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Exammappi__class__52593CB8" Association="schoolModel.FK__Exammappi__class__52593CB8">
+            <End Role="class" EntitySet="classes" />
+            <End Role="Exammapping" EntitySet="Exammappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__feemappin__class__31EC6D26" Association="schoolModel.FK__feemappin__class__31EC6D26">
+            <End Role="class" EntitySet="classes" />
+            <End Role="feemapping" EntitySet="feemappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__classid__5AEE82B9" Association="schoolModel.FK__Marks__classid__5AEE82B9">
+            <End Role="class" EntitySet="classes" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__payment__classid__37A5467C" Association="schoolModel.FK__payment__classid__37A5467C">
+            <End Role="class" EntitySet="classes" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__classid__29572725" Association="schoolModel.FK__student__classid__29572725">
+            <End Role="class" EntitySet="classes" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subjectma__class__5629CD9C" Association="schoolModel.FK__subjectma__class__5629CD9C">
+            <End Role="class" EntitySet="classes" />
+            <End Role="subjectmapping" EntitySet="subjectmappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__Admission__59063A47" Association="schoolModel.FK__Marks__Admission__59063A47">
+            <End Role="student" EntitySet="students" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__student__rid__4BAC3F29" Association="schoolModel.FK__student__rid__4BAC3F29">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="student" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Teacher__rid__4E88ABD4" Association="schoolModel.FK__Teacher__rid__4E88ABD4">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <EntitySet Name="credintials" EntityType="schoolModel.credintial" />
+          <AssociationSet Name="FK__credintials__Rid__6754599E" Association="schoolModel.FK__credintials__Rid__6754599E">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="credintial" EntitySet="credintials" />
+          </AssociationSet>
+          <FunctionImport Name="createstudent">
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="fname" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="dateofbirth" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="photo" Mode="In" Type="Binary" />
+            <Parameter Name="dateofjoing" Mode="In" Type="DateTime" />
+            <Parameter Name="classid" Mode="In" Type="Int32" />
+            <Parameter Name="acadamicyear" Mode="In" Type="String" />
+            <Parameter Name="isactive" Mode="In" Type="Boolean" />
+            <Parameter Name="rid" Mode="In" Type="Int32" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="studentcreate" EntitySet="students" ReturnType="Collection(schoolModel.student)">
+            <Parameter Name="sname" Mode="In" Type="String" />
+            <Parameter Name="fname" Mode="In" Type="String" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="dateofbirth" Mode="In" Type="DateTime" />
+            <Parameter Name="gender" Mode="In" Type="Boolean" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="photo" Mode="In" Type="Binary" />
+            <Parameter Name="dateofjoing" Mode="In" Type="DateTime" />
+            <Parameter Name="classid" Mode="In" Type="Int32" />
+            <Parameter Name="acadamicyear" Mode="In" Type="String" />
+            <Parameter Name="isactive" Mode="In" Type="Boolean" />
+            <Parameter Name="rid" Mode="In" Type="Int32" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="createclass">
+          <Parameter Name="classname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="classcreate" EntitySet="classes" ReturnType="Collection(schoolModel.class)">
+          <Parameter Name="classname" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="exams" EntityType="schoolModel.exam" />
+          <EntitySet Name="subjectts" EntityType="schoolModel.subjectt" />
+          <AssociationSet Name="FK__Exammappi__exami__5165187F" Association="schoolModel.FK__Exammappi__exami__5165187F">
+            <End Role="exam" EntitySet="exams" />
+            <End Role="Exammapping" EntitySet="Exammappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__examid__5BE2A6F2" Association="schoolModel.FK__Marks__examid__5BE2A6F2">
+            <End Role="exam" EntitySet="exams" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marks__subid__59FA5E80" Association="schoolModel.FK__Marks__subid__59FA5E80">
+            <End Role="subjectt" EntitySet="subjectts" />
+            <End Role="Mark" EntitySet="Marks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__subjectma__subid__5535A963" Association="schoolModel.FK__subjectma__subid__5535A963">
+            <End Role="subjectt" EntitySet="subjectts" />
+            <End Role="subjectmapping" EntitySet="subjectmappings" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="attendance">
+          <Key>
+            <PropertyRef Name="atid" />
+          </Key>
+          <Property Name="atid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="classid" Type="Int32" Nullable="false" />
+          <Property Name="dateofattandance" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="attandences" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__attendanc__class__2C3393D0" FromRole="attendance" ToRole="class" />
+        </EntityType>
+        <EntityType Name="class">
+          <Key>
+            <PropertyRef Name="classid" />
+          </Key>
+          <Property Name="classid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="classteacher" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="attendances" Relationship="schoolModel.FK__attendanc__class__2C3393D0" FromRole="class" ToRole="attendance" />
+          <NavigationProperty Name="Exammappings" Relationship="schoolModel.FK__Exammappi__class__52593CB8" FromRole="class" ToRole="Exammapping" />
+          <NavigationProperty Name="feemappings" Relationship="schoolModel.FK__feemappin__class__31EC6D26" FromRole="class" ToRole="feemapping" />
+          <NavigationProperty Name="Marks" Relationship="schoolModel.FK__Marks__classid__5AEE82B9" FromRole="class" ToRole="Mark" />
+          <NavigationProperty Name="payments" Relationship="schoolModel.FK__payment__classid__37A5467C" FromRole="class" ToRole="payment" />
+          <NavigationProperty Name="students" Relationship="schoolModel.FK__student__classid__29572725" FromRole="class" ToRole="student" />
+          <NavigationProperty Name="subjectmappings" Relationship="schoolModel.FK__subjectma__class__5629CD9C" FromRole="class" ToRole="subjectmapping" />
+        </EntityType>
+        <EntityType Name="Exammapping">
+          <Key>
+            <PropertyRef Name="emid" />
+          </Key>
+          <Property Name="emid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="examid" Type="Int32" />
+          <Property Name="classid" Type="Int32" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__Exammappi__class__52593CB8" FromRole="Exammapping" ToRole="class" />
+          <NavigationProperty Name="exam" Relationship="schoolModel.FK__Exammappi__exami__5165187F" FromRole="Exammapping" ToRole="exam" />
+        </EntityType>
+        <EntityType Name="feemapping">
+          <Key>
+            <PropertyRef Name="fid" />
+          </Key>
+          <Property Name="fid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admissionnum" Type="Int32" Nullable="false" />
+          <Property Name="studentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fathername" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="classid" Type="Int32" Nullable="false" />
+          <Property Name="schoolfee" Type="Int32" Nullable="false" />
+          <Property Name="busfee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__feemappin__class__31EC6D26" FromRole="feemapping" ToRole="class" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="mid" />
+          </Key>
+          <Property Name="mid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Admissionum" Type="Int32" />
+          <Property Name="subid" Type="Int32" />
+          <Property Name="classid" Type="Int32" />
+          <Property Name="examid" Type="Int32" />
+          <Property Name="Mstatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="submarks" Type="Int32" />
+          <Property Name="isprasent" Type="Boolean" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__Marks__classid__5AEE82B9" FromRole="Mark" ToRole="class" />
+          <NavigationProperty Name="student" Relationship="schoolModel.FK__Marks__Admission__59063A47" FromRole="Mark" ToRole="student" />
+          <NavigationProperty Name="exam" Relationship="schoolModel.FK__Marks__examid__5BE2A6F2" FromRole="Mark" ToRole="exam" />
+          <NavigationProperty Name="subjectt" Relationship="schoolModel.FK__Marks__subid__59FA5E80" FromRole="Mark" ToRole="subjectt" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paymentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="studnetname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="feepaid" Type="Int32" Nullable="false" />
+          <Property Name="feepending" Type="Int32" Nullable="false" />
+          <Property Name="totalfee" Type="Int32" Nullable="false" />
+          <Property Name="lastpaiddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="classid" Type="Int32" Nullable="false" />
+          <Property Name="islastpay" Type="Boolean" Nullable="false" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="admissionnum" Type="Int32" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__payment__classid__37A5467C" FromRole="payment" ToRole="class" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="students" Relationship="schoolModel.FK__student__rid__4BAC3F29" FromRole="Role" ToRole="student" />
+          <NavigationProperty Name="Teachers" Relationship="schoolModel.FK__Teacher__rid__4E88ABD4" FromRole="Role" ToRole="Teacher" />
+          <NavigationProperty Name="credintials" Relationship="schoolModel.FK__credintials__Rid__6754599E" FromRole="Role" ToRole="credintial" />
+        </EntityType>
+        <EntityType Name="student">
+          <Key>
+            <PropertyRef Name="admissionnum" />
+          </Key>
+          <Property Name="admissionnum" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fathername" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phonenumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dateofbirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="gender" Type="Boolean" Nullable="false" />
+          <Property Name="adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="dateofjoining" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="classid" Type="Int32" Nullable="false" />
+          <Property Name="acadamicyear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="rid" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__student__classid__29572725" FromRole="student" ToRole="class" />
+          <NavigationProperty Name="Marks" Relationship="schoolModel.FK__Marks__Admission__59063A47" FromRole="student" ToRole="Mark" />
+          <NavigationProperty Name="Role" Relationship="schoolModel.FK__student__rid__4BAC3F29" FromRole="student" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="subjectmapping">
+          <Key>
+            <PropertyRef Name="smid" />
+          </Key>
+          <Property Name="smid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subid" Type="Int32" />
+          <Property Name="classid" Type="Int32" />
+          <NavigationProperty Name="class" Relationship="schoolModel.FK__subjectma__class__5629CD9C" FromRole="subjectmapping" ToRole="class" />
+          <NavigationProperty Name="subjectt" Relationship="schoolModel.FK__subjectma__subid__5535A963" FromRole="subjectmapping" ToRole="subjectt" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="tid" />
+          </Key>
+          <Property Name="tid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fathername" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="phonenumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dateofbirth" Type="DateTime" Precision="3" />
+          <Property Name="gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="Binary" MaxLength="1" FixedLength="false" />
+          <Property Name="dateofjoing" Type="DateTime" Precision="3" />
+          <Property Name="rid" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="schoolModel.FK__Teacher__rid__4E88ABD4" FromRole="Teacher" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__attendanc__class__2C3393D0">
+          <End Type="schoolModel.class" Role="class" Multiplicity="1" />
+          <End Type="schoolModel.attendance" Role="attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="attendance">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Exammappi__class__52593CB8">
+          <End Type="schoolModel.class" Role="class" Multiplicity="0..1" />
+          <End Type="schoolModel.Exammapping" Role="Exammapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="Exammapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__feemappin__class__31EC6D26">
+          <End Type="schoolModel.class" Role="class" Multiplicity="1" />
+          <End Type="schoolModel.feemapping" Role="feemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="feemapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__classid__5AEE82B9">
+          <End Type="schoolModel.class" Role="class" Multiplicity="0..1" />
+          <End Type="schoolModel.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__payment__classid__37A5467C">
+          <End Type="schoolModel.class" Role="class" Multiplicity="1" />
+          <End Type="schoolModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__classid__29572725">
+          <End Type="schoolModel.class" Role="class" Multiplicity="1" />
+          <End Type="schoolModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subjectma__class__5629CD9C">
+          <End Type="schoolModel.class" Role="class" Multiplicity="0..1" />
+          <End Type="schoolModel.subjectmapping" Role="subjectmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="class">
+              <PropertyRef Name="classid" />
+            </Principal>
+            <Dependent Role="subjectmapping">
+              <PropertyRef Name="classid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__Admission__59063A47">
+          <End Type="schoolModel.student" Role="student" Multiplicity="0..1" />
+          <End Type="schoolModel.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student">
+              <PropertyRef Name="admissionnum" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="Admissionum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__student__rid__4BAC3F29">
+          <End Type="schoolModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="schoolModel.student" Role="student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="student">
+              <PropertyRef Name="rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Teacher__rid__4E88ABD4">
+          <End Type="schoolModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="schoolModel.Teacher" Role="Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="credintial">
+          <Key>
+            <PropertyRef Name="cid" />
+          </Key>
+          <Property Name="id" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rid" Type="Int32" />
+          <Property Name="cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Role" Relationship="schoolModel.FK__credintials__Rid__6754599E" FromRole="credintial" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK__credintials__Rid__6754599E">
+          <End Type="schoolModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="schoolModel.credintial" Role="credintial" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="rid" />
+            </Principal>
+            <Dependent Role="credintial">
+              <PropertyRef Name="Rid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="exam">
+          <Key>
+            <PropertyRef Name="eid" />
+          </Key>
+          <Property Name="eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="examname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="examdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Exammappings" Relationship="schoolModel.FK__Exammappi__exami__5165187F" FromRole="exam" ToRole="Exammapping" />
+          <NavigationProperty Name="Marks" Relationship="schoolModel.FK__Marks__examid__5BE2A6F2" FromRole="exam" ToRole="Mark" />
+        </EntityType>
+        <EntityType Name="subjectt">
+          <Key>
+            <PropertyRef Name="subid" />
+          </Key>
+          <Property Name="subid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="minmarks" Type="Int32" Nullable="false" />
+          <Property Name="maxmarks" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Marks" Relationship="schoolModel.FK__Marks__subid__59FA5E80" FromRole="subjectt" ToRole="Mark" />
+          <NavigationProperty Name="subjectmappings" Relationship="schoolModel.FK__subjectma__subid__5535A963" FromRole="subjectt" ToRole="subjectmapping" />
+        </EntityType>
+        <Association Name="FK__Exammappi__exami__5165187F">
+          <End Type="schoolModel.exam" Role="exam" Multiplicity="0..1" />
+          <End Type="schoolModel.Exammapping" Role="Exammapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exam">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="Exammapping">
+              <PropertyRef Name="examid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__examid__5BE2A6F2">
+          <End Type="schoolModel.exam" Role="exam" Multiplicity="0..1" />
+          <End Type="schoolModel.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="exam">
+              <PropertyRef Name="eid" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="examid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marks__subid__59FA5E80">
+          <End Type="schoolModel.subjectt" Role="subjectt" Multiplicity="0..1" />
+          <End Type="schoolModel.Mark" Role="Mark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subjectt">
+              <PropertyRef Name="subid" />
+            </Principal>
+            <Dependent Role="Mark">
+              <PropertyRef Name="subid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subjectma__subid__5535A963">
+          <End Type="schoolModel.subjectt" Role="subjectt" Multiplicity="0..1" />
+          <End Type="schoolModel.subjectmapping" Role="subjectmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="subjectt">
+              <PropertyRef Name="subid" />
+            </Principal>
+            <Dependent Role="subjectmapping">
+              <PropertyRef Name="subid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="schoolModelStoreContainer" CdmEntityContainer="schoolEntities3">
+          <EntitySetMapping Name="attendances">
+            <EntityTypeMapping TypeName="schoolModel.attendance">
+              <MappingFragment StoreEntitySet="attendance">
+                <ScalarProperty Name="attandences" ColumnName="attandences" />
+                <ScalarProperty Name="dateofattandance" ColumnName="dateofattandance" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="atid" ColumnName="atid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classes">
+            <EntityTypeMapping TypeName="schoolModel.class">
+              <MappingFragment StoreEntitySet="classes">
+                <ScalarProperty Name="classteacher" ColumnName="classteacher" />
+                <ScalarProperty Name="classname" ColumnName="classname" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exammappings">
+            <EntityTypeMapping TypeName="schoolModel.Exammapping">
+              <MappingFragment StoreEntitySet="Exammapping">
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="examid" ColumnName="examid" />
+                <ScalarProperty Name="emid" ColumnName="emid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feemappings">
+            <EntityTypeMapping TypeName="schoolModel.feemapping">
+              <MappingFragment StoreEntitySet="feemapping">
+                <ScalarProperty Name="busfee" ColumnName="busfee" />
+                <ScalarProperty Name="schoolfee" ColumnName="schoolfee" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="fathername" ColumnName="fathername" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="admissionnum" ColumnName="admissionnum" />
+                <ScalarProperty Name="fid" ColumnName="fid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="schoolModel.Mark">
+              <MappingFragment StoreEntitySet="Marks">
+                <ScalarProperty Name="isprasent" ColumnName="isprasent" />
+                <ScalarProperty Name="submarks" ColumnName="submarks" />
+                <ScalarProperty Name="Mstatus" ColumnName="Mstatus" />
+                <ScalarProperty Name="examid" ColumnName="examid" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="subid" ColumnName="subid" />
+                <ScalarProperty Name="Admissionum" ColumnName="Admissionum" />
+                <ScalarProperty Name="mid" ColumnName="mid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="schoolModel.payment">
+              <MappingFragment StoreEntitySet="payment">
+                <ScalarProperty Name="admissionnum" ColumnName="admissionnum" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="islastpay" ColumnName="islastpay" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="lastpaiddate" ColumnName="lastpaiddate" />
+                <ScalarProperty Name="totalfee" ColumnName="totalfee" />
+                <ScalarProperty Name="feepending" ColumnName="feepending" />
+                <ScalarProperty Name="feepaid" ColumnName="feepaid" />
+                <ScalarProperty Name="studnetname" ColumnName="studnetname" />
+                <ScalarProperty Name="paymentname" ColumnName="paymentname" />
+                <ScalarProperty Name="pid" ColumnName="pid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="schoolModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RName" ColumnName="RName" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="schoolModel.student">
+              <MappingFragment StoreEntitySet="student">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="acadamicyear" ColumnName="acadamicyear" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="dateofjoining" ColumnName="dateofjoining" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="fathername" ColumnName="fathername" />
+                <ScalarProperty Name="studentname" ColumnName="studentname" />
+                <ScalarProperty Name="admissionnum" ColumnName="admissionnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjectmappings">
+            <EntityTypeMapping TypeName="schoolModel.subjectmapping">
+              <MappingFragment StoreEntitySet="subjectmapping">
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="subid" ColumnName="subid" />
+                <ScalarProperty Name="smid" ColumnName="smid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="schoolModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="dateofjoing" ColumnName="dateofjoing" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="adress" ColumnName="adress" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="phonenumber" ColumnName="phonenumber" />
+                <ScalarProperty Name="fathername" ColumnName="fathername" />
+                <ScalarProperty Name="Tname" ColumnName="Tname" />
+                <ScalarProperty Name="tid" ColumnName="tid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="credintials">
+            <EntityTypeMapping TypeName="schoolModel.credintial">
+              <MappingFragment StoreEntitySet="credintials">
+                <ScalarProperty Name="cid" ColumnName="cid" />
+                <ScalarProperty Name="Rid" ColumnName="Rid" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="createstudent" FunctionName="schoolModel.Store.createstudent" />
+          <FunctionImportMapping FunctionImportName="studentcreate" FunctionName="schoolModel.Store.createstudent" />
+          <FunctionImportMapping FunctionImportName="createclass" FunctionName="schoolModel.Store.createclass" />
+          <FunctionImportMapping FunctionImportName="classcreate" FunctionName="schoolModel.Store.createclass" />
+          <EntitySetMapping Name="exams">
+            <EntityTypeMapping TypeName="schoolModel.exam">
+              <MappingFragment StoreEntitySet="exam">
+                <ScalarProperty Name="examdate" ColumnName="examdate" />
+                <ScalarProperty Name="examname" ColumnName="examname" />
+                <ScalarProperty Name="eid" ColumnName="eid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjectts">
+            <EntityTypeMapping TypeName="schoolModel.subjectt">
+              <MappingFragment StoreEntitySet="subjectt">
+                <ScalarProperty Name="maxmarks" ColumnName="maxmarks" />
+                <ScalarProperty Name="minmarks" ColumnName="minmarks" />
+                <ScalarProperty Name="subname" ColumnName="subname" />
+                <ScalarProperty Name="subid" ColumnName="subid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

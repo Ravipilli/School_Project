@@ -1,0 +1,139 @@
+﻿@model WebApplication2.Models.MarksModel
+@{
+    ViewBag.Title = "Marks";
+}
+
+<h2>Marks</h2>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+
+        <div class="row">
+            <div class="col-4">
+
+
+
+                @Html.DropDownListFor(model => model.Classes, (IEnumerable<SelectListItem>)Model.classlist, new { @class = "form-control", id = "classid" })
+            </div>
+            <div class="col-4">
+
+
+                @Html.DropDownListFor(model => model.Examid, (IEnumerable<SelectListItem>)Model.examlist, new { @class = "form-control", id = "examid" })
+            </div>
+            <div class="col-2">
+
+
+                <input class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+
+        if (ViewBag.students != null)
+        {
+
+            <div class="card shadow-lg  border rounded-lg mt-3 col-md-9">
+                <div class="card-body">
+
+                    <table id="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("StudentName")
+
+                                </th>
+
+
+                                <th>
+                                    @Html.DisplayName("Admission")
+
+                                </th>
+
+                                <th>
+                                    @Html.DisplayName("Action")
+
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < ViewBag.students.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        <p>@ViewBag.students[i].studentname</p>
+                                    </td>
+                                    <td>
+                                        <p>@ViewBag.students[i].admissionnum</p>
+                                        <input type="hidden" class="form-control" name="AdmissionNum" value="@ViewBag.students[i].admissionnum" />
+                                    </td>
+                                    <td>
+                                        <input type="button" value="AddMarks" class="btn btn-secondary btn-sm" align="right" data-toggle="modal" data-target="#exampleModal">
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+
+                </div>
+            </div>
+        }
+        if (ViewBag.students != null)
+        {
+            @Html.Partial("AddMarks")
+        }
+
+
+
+    }
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@if (TempData["Marks"] != null)
+{
+
+
+    <script type="text/javascript">
+
+
+
+        Swal.fire({
+            title: 'Marks Added sucessfully!',
+
+            icon: 'success'
+        })
+
+    </script>
+}
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function ($) {
+        $("#date").datepicker({
+
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+
+            maxDate: 0
+
+
+        });
+        $("#date").datepicker().datepicker("setDate", new Date());
+
+
+
+
+    });
+
+
+</script>
+
+

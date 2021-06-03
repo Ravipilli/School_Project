@@ -1,0 +1,22 @@
+﻿@model WebApplication2.Models.AttandanceModel
+
+
+        @for (int i = 0; i < ViewBag.students.Count; i++)
+        {
+
+            <div class="col-md-6 ">
+                <b> @ViewBag.students[i].studentname:</b>
+            
+
+
+
+                <input type="hidden" class="form-control" name="StudentName[@i]" value="@ViewBag.students[i].studentname" />
+                Prasent: <input type="radio" id="@i" name="attandance[@i]" value="P" />
+                Absent: <input type="radio" id="@i+1" name="attandance[@i]" value="A" />
+                <input type="hidden" name="username" id="b" value="@i" />
+            </div>
+
+
+
+        }
+    

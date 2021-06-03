@@ -1,0 +1,85 @@
+﻿@model IEnumerable<WebApplication2.DB.payment>
+
+@{
+    ViewBag.Title = "Paymentlist";
+}
+
+<h2 style="text-align:center;">Payment List</h2>
+
+<table id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Student Name")
+            </th>
+            <th>
+                @Html.DisplayName("Class")
+            </th>
+            <th>
+                @Html.DisplayName("Total Fee")
+            </th>
+            <th>
+                @Html.DisplayName("Pending Fee")
+            </th>
+            <th>
+                @Html.DisplayName("LastPaid")
+            </th>
+            <th>
+                @Html.DisplayName("LastPaid Date")
+            </th>
+
+
+            <th>
+                @Html.DisplayName("Action")
+            </th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.studnetname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.@class.classname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalfee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.feepending)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.feepaid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lastpaiddate)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.admissionnum }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.admissionnum }) |
+                    @Html.ActionLink("Payment", "Payment", new { id = item.admissionnum })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+}
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#table").DataTable();
+    });
+   
+    
+</script>

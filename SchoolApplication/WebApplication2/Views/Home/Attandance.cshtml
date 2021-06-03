@@ -1,0 +1,85 @@
+﻿@model WebApplication2.Models.AttandanceModel
+@{
+    ViewBag.Title = "Attandance";
+}
+
+<h2>Attandance</h2>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+
+        <div class="row">
+            <div class="col-4">
+
+
+
+                @Html.DropDownListFor(model => model.Classes, (IEnumerable<SelectListItem>)Model.classlist, new { @class = "form-control" })
+            </div>
+            <div class="col-4">
+
+
+                @Html.TextBoxFor(x => x.Dateofattadance, new { id = "date", @class = "form-control" })
+            </div>
+            <div class="col-2">
+
+
+                <input class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+
+        if (ViewBag.students != null)
+        {
+
+            <div class="card shadow-lg  border rounded-lg mt-3 col-md-9">
+                <div class="card-body"> 
+
+                    @Html.Partial("attancelist")
+
+                    <input class="btn btn-primary" type="submit" id="a" value="Submit" />
+                    </div>
+                </div>
+                    }
+
+
+
+                    }
+                </div>
+                @if (TempData["Attendance"] != null)
+                {
+                    <p id="successMessage">@TempData["Attendance"]</p>
+                }
+
+                <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+                <script src="~/Scripts/jquery-3.5.0.min.js"></script>
+                <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+                <script type="text/javascript">
+
+                    $(document).ready(function ($) {
+                        $("#date").datepicker({
+
+                            dateFormat: "yy-mm-dd",
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "-60:+0",
+
+                            maxDate: 0
+
+
+                        });
+                        $("#date").datepicker().datepicker("setDate", new Date());
+
+                        $('#a').click(function (e) {
+                            var b = $('input[name*="username"]').length;
+
+                            if ($('input[type="radio"]:checked').length != b) {
+                                alert('Please select attendance for all students');
+                                e.preventDefault();
+                            }
+
+
+                        });
+
+                    });
+                </script>

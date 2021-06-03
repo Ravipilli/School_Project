@@ -1,0 +1,103 @@
+﻿@model WebApplication2.Models.FeeMappingModel
+
+
+<h2>FeeMapping</h2>
+@using (Html.BeginForm("FeeMapping", "Home", FormMethod.Post))
+
+{
+<div class="container w-75">
+    <div class="input-group col-md-6">
+
+        @Html.TextBoxFor(x => x.AdmissionNumber, new { placeholder = "Enter AdmissionNumber", @class = "form-control" })
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</div>
+}
+@if (Model!= null)
+{
+    <div class="container w-75">
+        <div class="card shadow-lg border-0 rounded-lg mt-3">
+            <div class="card-body">
+                @using (Html.BeginForm("FeeMapping", "Home", FormMethod.Post))
+
+                {
+                    <form >
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.StudentName)
+                                @Html.TextBoxFor(x => x.StudentName, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.AdmissionNumber)
+                                @Html.TextBoxFor(x => x.AdmissionNumber, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.FatherName)
+                                @Html.TextBoxFor(x => x.FatherName, new { @class = "form-control", @readonly = "true" })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.Label("Class")
+                                @Html.TextBoxFor(model => model.Class, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Schoolfee)
+                                @Html.TextBoxFor(x => x.Schoolfee, new { @class = "form-control" })
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Busfee)
+                                @Html.TextBoxFor(model => model.Busfee, new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group mt-4 mb-0">
+                            <input type="submit" id="sbt" class="btn btn-primary btn-block " value="Submit" />
+                        </div>
+                    </form>
+
+
+                }
+            </div>
+        </div>
+    </div>
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+@if (TempData["FeeMapping"] != null)
+{
+   
+
+<script type="text/javascript">
+
+
+        if ("@TempData["FeeMapping"]"== "Record not exist") {
+            Swal.fire({
+                title: 'Record not exist',
+
+                icon: 'warning'
+            })
+        }else if ("@TempData["FeeMapping"]"=="Records already exist!") {
+            Swal.fire({
+                title: 'Record already exist',
+
+                icon: 'warning'
+            })
+        } else {
+
+          Swal.fire({
+                title: 'FeeMapping Successfully',
+
+                icon: 'success'
+            })
+        }
+</script>
+
+}

@@ -1,0 +1,120 @@
+﻿@model WebApplication2.Models.ExamsModel
+@{
+    ViewBag.Title = "Exams";
+}
+
+@Html.Partial("_CreateExam")
+
+<div class="container-fluid">
+    <div class="my-3" align="right">
+        <button type="button" class="btn btn-secondary btn-sm" align="right" data-toggle="modal" data-target="#exampleModal">
+            Create Exam
+        </button>
+    </div>
+
+    <table id="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Name of Examination")
+
+                </th>
+
+
+               
+
+                <th>
+                    @Html.DisplayName("Date")
+
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Examlist)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.examname)
+                    </td>
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.examdate)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@section Scripts{
+
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+
+
+}
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#table").DataTable();
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
+@if (TempData["CreateExam"] != null)
+{
+
+
+    <script type="text/javascript">
+
+
+
+        Swal.fire({
+            title: 'Exam Created Successfully',
+
+            icon: 'success'
+        })
+
+    </script>
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#classes').multiselect({
+            enableFiltering: true,
+            includeSelectAllOption: true,
+
+
+
+        });
+
+    });
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function ($) {
+     
+        $("#date").datepicker({
+
+            dateFormat: "yy-MM-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0",
+            maxDate: 0
+        });
+    });
+
+</script>
+

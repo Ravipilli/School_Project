@@ -1,0 +1,210 @@
+﻿@model WebApplication2.Models.PaymentModel
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payment</h2>
+<div class="container">
+    <div class="card shadow-lg  border-dark rounded-lg mt-3">
+        @using (Html.BeginForm())
+        {
+
+            <div class="input-group">
+                @Html.TextBoxFor(x => x.AdmissionNumber, new { placeholder = "Enter AdmissionNumber", @class = "form-control" })
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+        }
+    </div>
+    @if (Model != null)
+    {
+        <div class="card shadow-lg  border-dark rounded-lg mt-3">
+            <div class="card-body">
+
+                @using (Html.BeginForm())
+                {
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.AdmissionNumber)
+                                @Html.TextBoxFor(x => x.AdmissionNumber, new { @class = "form-control", @readonly = "true" })
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.StundentName)
+                                @Html.TextBoxFor(x => x.StundentName, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.Class)
+                                @Html.TextBoxFor(x => x.Class, new { @class = "form-control", @readonly = "true" })
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Dateofpayment)
+                                @Html.TextBoxFor(x => x.Dateofpayment, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.Totalfee)
+                                @Html.TextBoxFor(x => x.Totalfee, new { @class = "form-control", @readonly = "true" })
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(x => x.Pending)
+                                @Html.TextBoxFor(x => x.Pending, new { @class = "form-control", @readonly = "true" })
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6 ">
+                                @Html.LabelFor(x => x.paying)
+                                @Html.TextBoxFor(x => x.paying, new { placeholder = "Enter Amount", @class = "form-control" })
+                            </div>
+
+
+                            <div class="form-group col-md-6">
+
+                                @Html.LabelFor(x => x.Paymenttype)
+                                @Html.DropDownListFor(x => x.Paymenttype, new List<SelectListItem>
+                          {
+                                new SelectListItem { Text = "1st term", Value = "1st term"},
+                                new SelectListItem { Text = "2nd term", Value = "2nd term"},
+                                new SelectListItem { Text = "3rd term", Value = "3rd term"}
+                          }, "Select Fee", new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+
+                        <input type="hidden" name="GridHtml" />
+                        <input type="submit" id="btnsubmit" class="btn btn-primary" value="Submit" />
+
+                    </form>
+
+
+                }
+            </div>
+        </div>
+    }
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+@if (@TempData["FeeMapping"] != null)
+{
+    <script type="text/javascript">
+                
+            Swal.fire({
+                title: 'Record not exist',
+
+                icon: 'warning'
+            })
+                    </script>
+}
+        @if (TempData["Success"] != null)
+        {
+<script type="text/javascript">
+              
+                Swal.fire({
+                    title: 'Fee paid Successfully',
+
+                    icon: 'success'
+                })
+    </script>
+}
+@*<button id="btnsubmit">Submit </button>*@
+<form action="/Home/Export" method="POST" id="s">
+</form>
+<div class="print">
+    <style>
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        tr, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+
+    <table style="width:100%">
+
+        <tr>
+            <td><h1 text-align="center">Payment Recipt</h1></td>
+            <td><b>Date:<span id="time"></span></b></td>
+        </tr>
+        <tr>
+            <td>
+                <b>Name</b>@Html.DisplayFor(x => x.StundentName)
+            </td>
+            <td>
+                <b>Class</b>:@Html.DisplayFor(x => x.Class)
+            </td>
+        </tr>
+        <tr>
+            <th rowspan="3">TotalFee:@Html.DisplayFor(x => x.Totalfee)</th>
+            <td>Fee Pending:@Html.DisplayFor(x => x.Pending)</td>
+        </tr>
+
+        <tr>
+
+            <th> Prasent Paid:<span id="p"></span></th>
+
+        </tr>
+    </table>
+
+</div>
+
+
+<script src="~/Scripts/jquery-3.5.0.min.js"></script>
+<script type="text/javascript">
+                $(function () {
+                    var today = new Date();
+                    var date = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate();
+                    document.getElementById('time').innerHTML = date;
+
+                    $("#btnsubmit").click(function () {
+                        var x = document.getElementById("pay").value;
+                        document.getElementById("p").innerHTML = x;
+
+                        var txt;
+
+                        var r = confirm("Are you want print");
+                        if (r == true) {
+
+                $("input[name='GridHtml']").val($(".print").html());
+
+
+
+                            txt = "Payment Sucessfully";
+                        } else {
+                txt = "Payment not Sucessfully";
+                        }
+                        document.getElementById("demo").innerHTML = txt;
+
+                        //window.setTimeout(function () {$('#payment').click(); }, 5000);
+                    });
+                });
+
+</script>
+
+@*</script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btnsubmit").click(function () {
+                $.post("/Home/Export", { GridHtml: $(".print").html() }, function (data) {
+
+                });
+
+            });
+        });
+
+    </script>*@
+
